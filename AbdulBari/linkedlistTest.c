@@ -111,7 +111,6 @@ void deleteAnyPos(struct Node *p, int pos)
 
 void checkSort(struct Node *p, int n)
 {
-  int count = 0;
   struct Node *q;
   q = p;
   p = p->next;
