@@ -1,0 +1,9 @@
+{
+  "C_Cpp.errorSquiggles": "Enabled",
+  "files.associations": {
+    "*.ejs": "html",
+    "__string": "c",
+    "algorithm": "c",
+    "functional": "c"
+  }
+}

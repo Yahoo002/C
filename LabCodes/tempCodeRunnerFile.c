@@ -1,0 +1,1 @@
+int arrLength = sizeof(arr) / sizeof(arr[0]) + 1;
