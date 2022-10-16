@@ -109,20 +109,34 @@ void deleteAnyPos(struct Node *p, int pos)
   free(p);
 }
 
-void checkSort(struct Node *p, int n)
+void checkSort(struct Node *p)
 {
-  struct Node *q;
-  q = p;
-  p = p->next;
-  for (int i = 0; i < n; i++)
+  int x = -65536;
+  while (p != NULL)
   {
-    if (p->data > q->data)
+    if (p->data < x)
     {
-      printf("It is not sorted");
+      printf("The list is not sorted");
+      return;
     }
-    q = p;
+    x = p->data;
     p = p->next;
   }
+  printf("The list is sorted");
+}
+
+int removeDuplicate(struct Node *p)
+{
+  int x = INT32_MIN;
+  struct Node *q = NULL;
+  while (p != NULL)
+  {
+    if (p->data < x)
+    {
+      printf("It is not sorted");
+      return 0;
+    }
+    }
 }
 
 int main()
@@ -148,6 +162,6 @@ int main()
   // deleteFirst(first);
   // deleteAtEnd(first);
   // Delete(first, 3);
-  checkSort(first, n);
-  display(first);
+  checkSort(first);
+  // display(first);
 }
