@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 struct Node
 {
@@ -54,7 +55,7 @@ void insertAtEnd(struct Node *p, int x)
     p = p->next;
   }
   t->next = p->next;
-  p->next = t;
+  p->next = t; // linking the node t to the already present linked list of nodes p
 }
 
 void insertAtAnyPos(struct Node *p, int x, int pos)
@@ -109,34 +110,54 @@ void deleteAnyPos(struct Node *p, int pos)
   free(p);
 }
 
-void checkSort(struct Node *p)
+bool checkSort(struct Node *p, int n)
 {
   int x = -65536;
   while (p != NULL)
   {
     if (p->data < x)
     {
-      printf("The list is not sorted");
-      return;
+      return false;
     }
     x = p->data;
     p = p->next;
   }
-  printf("The list is sorted");
+  return true;
 }
 
-int removeDuplicate(struct Node *p)
+void sort(struct Node *p, int n)
 {
-  int x = INT32_MIN;
-  struct Node *q = NULL;
+  struct Node *q;
+  int t;
+  for (int i = 0; i < n - 1; i++)
+  {
+    q = p;
+    p = p->next;
+    if (q->data > p->data)
+    {
+      t = q->data;
+      q->data = p->data;
+      p->data = t;
+    }
+  }
+}
+
+void reverse(struct Node *p, int n)
+{
+  int arr[n];
+  p = first;
+  int i = 0;
   while (p != NULL)
   {
-    if (p->data < x)
-    {
-      printf("It is not sorted");
-      return 0;
-    }
-    }
+    arr[i++] = p->data;
+    p = p->next;
+  }
+  p = first;
+  while (p != NULL)
+  {
+    p->data = arr[--i];
+    p = p->next;
+  }
 }
 
 int main()
@@ -162,6 +183,19 @@ int main()
   // deleteFirst(first);
   // deleteAtEnd(first);
   // Delete(first, 3);
-  checkSort(first);
-  // display(first);
+  // for (int i = 0; i < n; i++)
+  // {
+  //   if (checkSort(first, n))
+  //   {
+  //     printf("The sorted list is\n");
+  //     display(first);
+  //     break;
+  //   }
+  //   else
+  //   {
+  //     sort(first, n);
+  //   }
+  // }
+  reverse(first, n);
+  display(first);
 }
